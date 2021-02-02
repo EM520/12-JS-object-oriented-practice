@@ -51,17 +51,19 @@ function expect(target) {
 // Only add code to *THIS* section!
 
 function Dog(obj){
-    this.color = 'black'
     this.status ='normal'
-
-    if (obj.hungry === undefined){
-      this.hungry = true
-    }else{
-      this.hungry = false
-    }
+      if (obj){
+        this.color = obj.color
+        this.hungry = obj.hungry
+      }
+      if (this.hungry === undefined){
+        this.hungry = true
+      }else{
+        this.hungry = false
+      }
     //console.log(this.hungry)
 
-    if (obj.owner === undefined){
+    if (this.owner === undefined){
       this.owner = undefined
     }
     //console.log(this.owner)
@@ -70,8 +72,10 @@ function Dog(obj){
    
 
 function Human(obj){
-
-  if (obj.cool === undefined){
+  if(obj){
+    this.cool = obj.cool
+  }
+  if (this.cool === undefined){
     this.cool = false
   }else{
     this.cool = true
@@ -86,7 +90,6 @@ Human.prototype.pet= function(obj) {
 
 Human.prototype.feed = function(obj){
   obj.hungry = false
-   
 }
 //        __
 //   ____/ /___  ____ ______
@@ -104,9 +107,7 @@ var moonshine = new Dog({
   color: 'blue-red',
 })
 
-var atticus = new Dog({
-
-})
+var atticus = new Dog()
 
 //     __
 //    / /_  __  ______ ___  ____ _____  _____
@@ -114,9 +115,7 @@ var atticus = new Dog({
 //  / / / / /_/ / / / / / / /_/ / / / (__  )
 // /_/ /_/\__,_/_/ /_/ /_/\__,_/_/ /_/____/
 
-var mason = new Human({
-
-})
+var mason = new Human()
 
 var julia = new Human({
   cool: true,
